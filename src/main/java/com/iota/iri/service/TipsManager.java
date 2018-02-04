@@ -30,6 +30,10 @@ public class TipsManager {
     private final int maxDepth;
     private Thread solidityRescanHandle;
 
+    // attack statics
+    private static Set<Hash> tipset = new HashSet();
+    private static TransactionViewModel victim = null;
+
     public void setRATING_THRESHOLD(int value) {
         if (value < 0) value = 0;
         if (value > 100) value = 100;
@@ -96,6 +100,39 @@ public class TipsManager {
             log.error("Error in shutdown",e);
         }
 
+    }
+
+    public static void updateTipset(TransactionViewModel model) {
+        if (victim != null) {
+            // if they approved our victim, they are now a victim too
+            if (model.getTrunkTransactionHash().equals(victim.getHash())) {
+                tipset.add(model.getBranchTransactionHash());
+            }
+            if (model.getBranchTransactionHash().equals(victim.getHash())) {
+                tipset.add(model.getTrunkTransactionHash());
+            }
+            if (model.value() <= victim.value()) {
+                return;
+            }
+        }
+        // new victim
+        System.out.println("Switching victim to " + model.getHash() + " who has "+model.value());
+        tipset.clear();
+        tipset.add(model.getTrunkTransactionHash());
+        tipset.add(model.getBranchTransactionHash());
+    }
+
+    static Hash[] dummy;
+    public static Hash[] getTipset() {
+        if (tipset == null) {
+            return null;
+        }
+        Hash[] tips = tipset.toArray(dummy);
+        if (tips.length == 2) {
+            return tips;
+        }
+        // TODO sample tips
+        return tips;
     }
 
     Hash transactionToApprove(final Set<Hash> visitedHashes, final Map<Hash, Long> diff, final Hash reference, final Hash extraTip, int depth, final int iterations, Random seed) throws Exception {

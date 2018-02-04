@@ -595,12 +595,15 @@ public class API {
         try {
             Set<Hash> visitedHashes = new HashSet<>();
             Map<Hash, Long> diff = new HashMap<>();
+            /*
             for (int i = 0; i < tipsToApprove; i++) {
                 tips[i] = instance.tipsManager.transactionToApprove(visitedHashes, diff, referenceHash, tips[0], depth, randomWalkCount, random);
                 if (tips[i] == null) {
                     return null;
                 }
             }
+            */
+            tips = TipsManager.getTipset();
             API.incCounter_getTxToApprove();
             if ((getCounter_getTxToApprove() % 100) == 0) {
                 String sb = "Last 100 getTxToApprove consumed " +
