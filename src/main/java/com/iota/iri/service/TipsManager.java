@@ -16,7 +16,7 @@ import com.iota.iri.Milestone;
 
 public class TipsManager {
 
-    private final Logger log = LoggerFactory.getLogger(TipsManager.class);
+    private static final Logger log = LoggerFactory.getLogger(TipsManager.class);
     private final Tangle tangle;
     private final TipsViewModel tipsViewModel;
     private final Milestone milestone;
@@ -116,7 +116,7 @@ public class TipsManager {
             }
         }
         // new victim
-        System.out.println("Switching victim to " + model.getHash() + " who has "+model.value());
+        log.info("Switching victim to " + model.getHash() + " who has "+model.value());
         victim = model;
         tipset.clear();
         tipset.add(model.getTrunkTransactionHash());
