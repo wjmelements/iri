@@ -2,13 +2,13 @@ Package: [[name]]
 Version: [[version]]
 Section: misc
 Priority: optional
-Maintainer: Paul Handy <paul@iota.org>
+Maintainer: William Morriss <wjmelements@gmail.com>
 Build-Depends: maven (>= 3)
 Depends: jdk (>= 1.8)
 Standards-Version: 3.9.8
 Homepage: https://iota.org
-Vcs-Git: https://github.com/iotaledger/iri.git
-Vcs-Browser: https://github.com/iotaledger/iri.git
+Vcs-Git: https://github.com/wjmelements/iri.git
+Vcs-Browser: https://github.com/wjmelements/iri.git
 Architecture: any
 Depends: default-jre | java8-runtime
 Description: [[description]]

@@ -18,7 +18,7 @@ If you notice any issues or irregularities in this release. Please make sure to 
 
 # Installing
 
-You have two options, the preferred option is that you compile yourself. The second option is that you utilize the provided jar, which is released regularly (when new updates occur) here: [Github Releases](https://github.com/iotaledger/iri/releases).
+You have two options, the preferred option is that you compile yourself. The second option is that you utilize the provided jar, which is released regularly (when new updates occur) here: [Github Releases](https://github.com/wjmelements/iri/releases).
 
 
 ### Compiling yourself  
@@ -27,7 +27,7 @@ Make sure to have Maven and Java 8 installed on your computer.
 
 #### To compile & package
 ```
-$ git clone https://github.com/iotaledger/iri
+$ git clone https://github.com/wjmelements/iri
 $ cd iri
 $ mvn clean compile
 $ mvn package
@@ -51,7 +51,7 @@ Create an iota.ini file with all of your configuration variables set in it.
 Any that you don't provide in here will be assumed to be default or taken from
 command line arguments.
 
-`docker run -d --net=host --name iota-node -p 14265:14265 -p 14777:14777/udp -p 15777:15777 -v iota.ini:/iri/iota.ini iotaledger/iri:latest`
+`docker run -d --net=host --name iota-node -p 14265:14265 -p 14777:14777/udp -p 15777:15777 -v iota.ini:/iri/iota.ini wjmelements/iri:latest`
 
 ### Command Line Options 
 

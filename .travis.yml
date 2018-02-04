@@ -24,7 +24,7 @@ deploy:
   deploy: mvn package -P build-extras
   on:
     tags: true
-    repo: iotaledger/iri
+    repo: wjmelements/iri
     branch:
     - master
       # - dev
@@ -36,7 +36,7 @@ deploy:
 #skip_cleanup: true
 #on:
 #tags: true
-#repo: iotaledger/iri
+#repo: wjmelements/iri
 #branch: master
 env:
   global:
