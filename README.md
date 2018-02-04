@@ -4,7 +4,7 @@ This is the main branch of the main IRI repository, as this is a IOTA reference 
 
 It allows to connect easily using java directly to a local or a remote [[IOTA node]](http://learn.iota.org/).
 
-* **Latest release:** 1.4.2.1 Release
+* **Want to help stress-test IOTA? Use this release:** 1.4.2.wjm Release
 * **License:** GPLv3
 
 # How to get started
