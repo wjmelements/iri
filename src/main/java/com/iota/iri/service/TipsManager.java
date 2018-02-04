@@ -117,6 +117,7 @@ public class TipsManager {
         }
         // new victim
         System.out.println("Switching victim to " + model.getHash() + " who has "+model.value());
+        victim = model;
         tipset.clear();
         tipset.add(model.getTrunkTransactionHash());
         tipset.add(model.getBranchTransactionHash());
