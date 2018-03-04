@@ -105,13 +105,15 @@ public class TipsManager {
     public static void updateTipset(TransactionViewModel model) {
         if (victim != null) {
             // if they approved our victim, they are now a victim too
-            if (model.getTrunkTransactionHash().equals(victim.getHash())) {
-                tipset.add(model.getBranchTransactionHash());
-            }
-            if (model.getBranchTransactionHash().equals(victim.getHash())) {
-                tipset.add(model.getTrunkTransactionHash());
-            }
             if (model.value() <= victim.value()) {
+                if (model.getTrunkTransactionHash().equals(victim.getHash())) {
+                    tipset.add(model.getBranchTransactionHash());
+                }
+                if (model.getBranchTransactionHash().equals(victim.getHash())) {
+                    tipset.add(model.getTrunkTransactionHash());
+                }
+                System.out.println("new tips");
+                System.out.println(tipset.toString());
                 return;
             }
         }
@@ -121,9 +123,11 @@ public class TipsManager {
         tipset.clear();
         tipset.add(model.getTrunkTransactionHash());
         tipset.add(model.getBranchTransactionHash());
+        System.out.println(tipset.toString());
     }
 
     static Hash[] dummy;
+    static Random random = new Random();
     public static Hash[] getTipset() {
         if (tipset == null) {
             return null;
@@ -132,8 +136,10 @@ public class TipsManager {
         if (tips.length == 2) {
             return tips;
         }
-        // TODO sample tips
-        return tips;
+        int random0 = random.nextInt() % tips.length;
+        int random1;
+        while ((random1 = random.nextInt() % tips.length) != random0);
+        return new Hash[] { tips[random0], tips[random1] };
     }
 
     Hash transactionToApprove(final Set<Hash> visitedHashes, final Map<Hash, Long> diff, final Hash reference, final Hash extraTip, int depth, final int iterations, Random seed) throws Exception {
